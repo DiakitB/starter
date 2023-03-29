@@ -7,7 +7,9 @@
 let score = 20;
 let highScore = 0;
 let secretNumber = Math.trunc(Math.random() * 20 + 1);
-
+const displayMessage = function (message) {
+  document.querySelector('.message').textContent = message;
+};
 document.querySelector('.check').addEventListener('click', test123);
 
 function test123() {
@@ -15,11 +17,11 @@ function test123() {
   console.log(userGuess, typeof userGuess);
   //when there is no input
   if (!userGuess) {
-    document.querySelector('.message').textContent = 'No number! 🤷‍♀️';
+    displayMessage('No number! 🤷‍♀️');
     // when the user guess the secret number
   } else if (userGuess === secretNumber) {
-    document.querySelector('.message').textContent =
-      'Correct Number bravo 🎁🥇';
+    displayMessage('Correct Number bravo 🎁🥇');
+    ('Correct Number bravo 🎁🥇');
     document.querySelector('.number').textContent = secretNumber;
     document.querySelector('body').style.backgroundColor = '#60b347';
     document.querySelector('.number').style.width = '30rem';
@@ -30,16 +32,17 @@ function test123() {
     //when userGuess  number that is greater then secret number
   } else if (userGuess !== secretNumber) {
     if (score > 1) {
-      document.querySelector('.message').textContent =
+      displayMessage(
         userGuess > secretNumber
           ? `${userGuess} is Too high 📈`
-          : `${userGuess} is Too low 📉`;
+          : `${userGuess} is Too low 📉`
+      );
       score--;
 
       document.querySelector('.score').textContent = score;
       document.querySelector('.guess').value = '';
     } else {
-      document.querySelector('.message').textContent = 'lost the game';
+      displayMessage('lost the game');
       document.querySelector('.score').textContent = 0;
     }
 
